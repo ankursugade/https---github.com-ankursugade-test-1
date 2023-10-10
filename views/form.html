@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form-based Web App</title>
+    <script>
+        // Client-side form validation
+        function validateForm() {
+            const observationBy = document.getElementById('observationBy').value;
+            const observationDate = document.getElementById('observationDate').value;
+            const floor = document.getElementById('floor').value;
+            const area = document.getElementById('area').value;
+            const observationDescription = document.getElementById('observationDescription').value;
+
+            if (!observationBy || !observationDate || !floor || !area || !observationDescription) {
+                alert('Please fill out all required fields.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Function to reset the form fields after successful submission
+        function resetForm() {
+            document.getElementById('data-form').reset();
+            document.getElementById('message').textContent = 'Form submitted successfully!';
+        }
+    </script>
+</head>
+<body>
+    <h1>Form-based Web App</h1>
+    <form id="data-form" action="/submit" method="post" onsubmit="return validateForm()">
+        <label for="observationBy">Observation By:</label>
+        <input type="text" id="observationBy" name="observationBy" required><br><br>
+
+        <label for="observationDate">Observation Date:</label>
+        <input type="date" id="observationDate" name="observationDate" required><br><br>
+
+        <label for="floor">Floor:</label>
+        <input type="text" id="floor" name="floor" required><br><br>
+
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" required><br><br>
+
+        <label for="observationDescription">Observation Description:</label>
+        <textarea id="observationDescription" name="observationDescription" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="observationType">Observation Type:</label>
+        <select id="observationType" name="observationType">
+            <option value="ID">ID</option>
+            <option value="MEPF">MEPF</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <div id="message"></div>
+    <br><br><br>
+    <a href="/generate-report">Generate Excel Report</a>
+</body>
+</html>
+
